@@ -1,6 +1,6 @@
 # TurboRemoteModal
 
-Turbo remote modal
+Turbo remote modal for Bootstrap
 
 ## Installation
 
@@ -9,3 +9,11 @@ Turbo remote modal
 
 ## Usage
 
+Just use the following helper in your views (new/edit actions typically):
+
+```ruby
+
+= remote_modal title: "New record" do
+  = render 'form'
+
+```
