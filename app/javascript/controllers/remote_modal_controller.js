@@ -8,6 +8,11 @@ export default class extends Controller {
     this.modal.show()
     document.addEventListener('turbo:submit-end', this.afterFormSubmit);
 
+    // Turbo 8 tuning
+    document.addEventListener("turbo:before-cache", function() {
+      this.element.innerHTML = ""
+    })
+
     this.element.parentElement.removeAttribute("src")
 
   }
