@@ -1,0 +1,16 @@
+- modal_class = local_assigns[:size].blank? ? "" : "modal-#{local_assigns[:size]}"
+
+- if turbo_frame_request?
+  = turbo_frame_tag "remote-modal" do
+    .modal.fade(tabindex="-1" data-controller="remote-modal"
+      data-action="turbo:before-render@document->remote-modal#hideBeforeRender")
+      .modal-dialog{class: modal_class}
+        .modal-content
+          .modal-header
+            %h5.modal-title= title
+            %button(type="button" class="btn-close"  aria-label="Close" data-action="remote-modal#close")
+          = turbo_frame_tag "remote-modal-body", class: "modal-body" do
+            = yield
+            
+- else
+  = yield
