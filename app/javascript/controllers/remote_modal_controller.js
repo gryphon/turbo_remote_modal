@@ -10,6 +10,7 @@ export default class extends Controller {
 
     // Turbo 8 tuning
     document.addEventListener("turbo:before-cache", function() {
+      if (!this.element) return;
       this.element.innerHTML = ""
     })
 
@@ -23,7 +24,7 @@ export default class extends Controller {
 
   close(){
     if (this.modal) {
-      this.modal.dispose()
+      this.modal.hide()
       this.element.remove()
     }
   }
@@ -31,7 +32,7 @@ export default class extends Controller {
   afterFormSubmit = (event) => {
     if (this.modal && event.detail.success && event.detail.formSubmission.method!="get") {
       console.log("Modal: removing")
-      this.modal.dispose();
+      this.modal.hide();
       this.element.remove()
     }
   };

@@ -7,7 +7,10 @@
       .modal-dialog{class: modal_class}
         .modal-content
           .modal-header
-            %h5.modal-title= title
+            .modal-title
+              %h5.text-nowrap.d-inline-block= title
+              - if !local_assigns[:subtitle].nil?
+                %span.d-inline-block.ms-md-2.text-nowrap= subtitle
             %button(type="button" class="btn-close"  aria-label="Close" data-action="remote-modal#close")
           = turbo_frame_tag "remote-modal-body", class: "modal-body" do
             = yield
