@@ -14,6 +14,17 @@ export default class extends Controller {
       this.element.innerHTML = ""
     })
 
+    document.addEventListener("turbo:frame-missing", (event) => {
+      const { detail: { response, visit } } = event;
+    
+      response.text().then((html) => {
+        console.log("Modal frame missing", response)
+        this.close();
+      })
+
+      event.preventDefault();
+    });
+
     this.element.parentElement.removeAttribute("src")
 
   }
