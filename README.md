@@ -4,8 +4,14 @@ Turbo remote modal for Bootstrap
 
 ## Installation
 
-* Add helpers to your application controller: ```helper TurboRemoteModal::Engine.helpers```
-* Add JS stimulus controller
+* Add JS stimulus controller:
+
+`
+import RemoteModalController from "turbo_remote_modal/app/javascript/controllers/remote_modal_controller.js"
+application.register("remote-modal", RemoteModalController)
+`
+
+* Add `turbo_frame_tag "remote-modal", target: "_top"` somewhere in the bottom of your app layout
 
 ## Usage
 
