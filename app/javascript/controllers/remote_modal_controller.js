@@ -41,7 +41,7 @@ export default class extends Controller {
   }
 
   afterFormSubmit = (event) => {
-    if (this.modal && event.detail.success && event.detail.formSubmission.method!="get") {
+    if (this.modal && event.detail.success && event.detail.formSubmission.method.toUpperCase()!="GET") {
       console.log("Modal: removing")
       this.modal.hide();
       this.element.remove()
