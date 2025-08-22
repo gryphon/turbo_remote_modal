@@ -1,0 +1,17 @@
+- modal_class = local_assigns[:size].blank? ? "" : "offcanvas-#{local_assigns[:size]}"
+
+- if turbo_frame_request?
+  = turbo_frame_tag "remote-offcanvas" do
+    .offcanvas.offcanvas-start(tabindex="-1" data-controller="remote-offcanvas"
+      data-action="turbo:before-render@document->remote-offcanvas#hideBeforeRender" class: modal_class)
+      .offcanvas-header
+        .offcanvas-title
+          %h5.text-nowrap.modal-title.d-inline-block= title
+          - if !local_assigns[:subtitle].nil?
+            %span.d-inline-block.ms-md-2.text-nowrap= subtitle
+        %button(type="button" class="btn-close"  aria-label="Close" data-action="remote-offcanvas#close")
+      = turbo_frame_tag "remote-modal-body", class: "offcanvas-body" do
+        = yield
+            
+- else
+  = yield

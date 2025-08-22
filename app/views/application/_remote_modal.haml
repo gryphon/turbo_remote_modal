@@ -2,13 +2,13 @@
 
 - if turbo_frame_request?
   = turbo_frame_tag "remote-modal" do
-    .modal.fade(tabindex="-1" data-controller="remote-modal"
-      data-action="turbo:before-render@document->remote-modal#hideBeforeRender")
+    .modal.fade{tabindex: "-1", data: {controller: "remote-modal",
+      action: "turbo:before-render@document->remote-modal#hideBeforeRender", "remote-modal-keep-value": (local_assigns[:keep] || false)}}
       .modal-dialog{class: modal_class}
         .modal-content
           .modal-header
             .modal-title
-              %h5.text-nowrap.d-inline-block= title
+              %h5.text-nowrap.modal-title.d-inline-block= title
               - if !local_assigns[:subtitle].nil?
                 %span.d-inline-block.ms-md-2.text-nowrap= subtitle
             %button(type="button" class="btn-close"  aria-label="Close" data-action="remote-modal#close")
