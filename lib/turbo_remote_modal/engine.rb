@@ -9,9 +9,15 @@ module TurboRemoteModal
     end
     
     initializer 'action_controller.include_concern' do
-      ActiveSupport.on_load(:action_controller) do
-        helper TurboRemoteModal::ApplicationHelper
+
+      config.to_prepare do
+        # Safely include the concern into the main app's ApplicationController
+        # ::ApplicationController.include CustomTableConcern
+        # ::ApplicationController.helper TurboRemoteModal::ApplicationHelper
+        ::ApplicationHelper.include TurboRemoteModal::ApplicationHelper
+
       end
+
     end
 
   end
